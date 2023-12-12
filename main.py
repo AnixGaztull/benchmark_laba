@@ -70,7 +70,7 @@ cursor.copy_expert("COPY trips from STDIN WITH CSV HEADER", csv_file)
 for i in range(4):
     for j in range(count_tests):
         start_time = time.perf_counter()
-        cursor.execute(requests_type_1[i])
+        answ = cursor.execute(requests_type_1[i])
         end_time = time.perf_counter()
         results_test.append(end_time - start_time)
     results_test.sort()
@@ -93,7 +93,7 @@ cursor.execute(f"DROP TABLE trips_old")
 for i in range(4):
     for j in range(10):
         start_time = time.perf_counter()
-        cursor.execute(requests_type_2[i])
+        answ = cursor.execute(requests_type_2[i])
         end_time = time.perf_counter()
         results_test.append(end_time - start_time)
     results_test.sort()
@@ -112,7 +112,7 @@ connect_duckdb.sql(
 for i in range(4):
     for j in range(10):
         start_time = time.perf_counter()
-        connect_duckdb.execute(requests_type_1[i])
+        answ = connect_duckdb.execute(requests_type_1[i])
         end_time = time.perf_counter()
         results_test.append(end_time - start_time)
     results_test.sort()
@@ -130,7 +130,7 @@ for i in range(4):
     for j in range(10):
         sql_request = sqlalchemy.text(requests_type_2[i])
         start_time = time.perf_counter()
-        pandas.read_sql_query(sql_request, connect_pandas)
+        answ = pandas.read_sql_query(sql_request, connect_pandas)
         end_time = time.perf_counter()
         results_test.append(end_time - start_time)
     results_test.sort()
@@ -192,7 +192,7 @@ for i in range(4):
     for j in range(10):
         sql_request = sqlalchemy.text(requests_type_2[i])
         start_time = time.perf_counter()
-        session.execute(sql_request).fetchall()
+        answ = session.execute(sql_request)
         end_time = time.perf_counter()
         results_test.append(end_time - start_time)
     results_test.sort()
